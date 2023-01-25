@@ -1,8 +1,10 @@
 from django.apps import AppConfig
+from settings import project
 import requests
 import re
 import base64
 import os
+
 
 
 class MainConfig(AppConfig):
@@ -10,11 +12,14 @@ class MainConfig(AppConfig):
     name = "main"
     
     def ready(self) -> None:
-        file_content = get_gradle_config('9.8.0.63668')
-        jars = jar_list(file_content)
-        #print(len(jars))
-        for jar in jars:
-            print("=> {}".format(jar))
+        
+        for v in project.SQ_VERSIONS:
+            file_content = get_gradle_config(v)
+            jars = jar_list(file_content)
+            #print(len(jars))
+            for jar in jars:
+                print("{0} => {1}".format(v,jar))
+            print('=======\n\n')
         return super().ready()
     
 def get_gradle_config(sqversion):
