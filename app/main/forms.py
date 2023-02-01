@@ -2,5 +2,7 @@ from django import forms
 
 
 class AddNewRelease(forms.Form):
-    full_version = forms.CharField(label="full_version", max_length=30)  # Label is the text that shows before the input-box
-   
+     # Label is the text that shows before the input-box
+   full_version = forms.CharField(label="SonarQube version", max_length=150,
+                           widget= forms.TextInput
+                           (attrs={'placeholder':'e.g 8.8.0.42792'}))

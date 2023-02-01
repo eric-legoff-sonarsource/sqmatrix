@@ -1,11 +1,10 @@
-{% extends 'base.html' %} {% block title %} Create New SonarQube version
-{%endblock %} {% block content %}
+{% extends 'base.html' %} {% block content %}
 <h3>Add a new SonarQube release</h3>
 <form method="post" action="/add/" class="form-group">
   {% csrf_token %}
   <div class="input-group mb-3">
     <div class="input-group-prepend">
-      <button type="submit" name="save" class="btn btn-success">
+      <button type="submit" name="save" class="btn btn-primary">
         Add release
       </button>
     </div>

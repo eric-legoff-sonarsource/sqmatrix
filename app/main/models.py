@@ -65,7 +65,7 @@ class Compatibility(models.Model):
     version = models.CharField(max_length=30)
     
     def __str__(self):
-        return f'{self.plugin.name}-{self.version}'
+        return f'{self.plugin.name} v{self.version}'
     
 def get_gradle_config(sqversion):
     '''Provides the raw text content of the build.gradle file 

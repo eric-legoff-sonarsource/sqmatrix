@@ -42,17 +42,16 @@
       	padding: 0px 10px;
       }
     </style>
-    <title>{% block title %}Bundled plugins{% endblock %}</title>
   </head>
-  <body>
+  <body class="text-bg-dark p-3">
     <div class="sidenav">
       <a href="/">Home</a>
-      <a href="/add">Add SQ version</a>
+      <a href="/add">Add new release</a>
     </div>
     <div id="content" name="content" class="main">
       <div class="row justify-content-center">
         <div class="col-8">
-          <h1 class="mt-2">SonarQube compatibilty</h1>
+          <h1 class="mt-2">SonarQube bundled plugins</h1>
           <hr class="mt-0 mb-4" />
           {% block content %} {% endblock %}
         </div>

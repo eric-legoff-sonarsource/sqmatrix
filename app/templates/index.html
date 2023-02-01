@@ -1,24 +1,40 @@
-{% extends 'base.html' %} {% block title %}List of bundled plugins{% endblock %}
-{% block content %}
-<div class="sqversions">
-  <ul>
-    {% for sqv,plugins in map.items %}
+{% extends 'base.html' %} {% block content %}
 
-    <li>
-      <b>{{sqv}}</b>
-      <div class="plugins">
-        <ul>
+<div class="accordion" id="releases">
+  {% for sqv,plugins in map.items %}
+
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="heading{{ forloop.counter }}">
+      <button
+        class="accordion-button"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapse{{ forloop.counter }}"
+        aria-expanded="true"
+        aria-controls="collapse{{ forloop.counter }}"
+      >
+        {{ sqv }}
+      </button>
+    </h2>
+    <div
+      id="collapse{{ forloop.counter }}"
+      class="accordion-collapse collapse hide"
+      aria-labelledby="heading{{ forloop.counter }}"
+      data-bs-parent="#releases"
+    >
+      <div class="accordion-body">
+        <ul class="list-group list-group-flush">
           {% for p in plugins %}
 
-          <li>{{ p }}</li>
+          <li class="list-group-item text-bg-dark p-3">{{ p }}</li>
 
           {% endfor %}
         </ul>
       </div>
-    </li>
-    <p />
-    {% endfor %}
-  </ul>
+    </div>
+  </div>
+
+  {% endfor %}
 </div>
 
 {% endblock %}
