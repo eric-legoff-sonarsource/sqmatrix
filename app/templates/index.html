@@ -1,13 +1,23 @@
-{% extends 'base.html' %} {% block content %} 
+{% extends 'base.html' %} {% block content %}
+<div class="sqversions">
+  <ul>
+    {% for sqv,plugins in map.items %}
 
-<ul>
-{% for v in sqversions %}
-<li>
-    {{ v }}
-</li>
+    <li>
+      <b>{{sqv}}</b>
+      <div class="plugins">
+        <ul>
+          {% for p in plugins %}
 
+          <li>{{ p }}</li>
 
-{% endfor %}
-</ul
+          {% endfor %}
+        </ul>
+      </div>
+    </li>
+    <p />
+    {% endfor %}
+  </ul>
+</div>
 
 {% endblock %}

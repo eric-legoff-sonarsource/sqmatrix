@@ -27,4 +27,4 @@ class Compatibility(models.Model):
     version = models.CharField(max_length=30)
     
     def __str__(self):
-        return f'{self.plugin.name}-{self.version} for {self.sonarqube.full_version}'
+        return f'{self.plugin.name}-{self.version}'
