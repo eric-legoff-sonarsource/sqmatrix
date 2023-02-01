@@ -1,4 +1,5 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} {% block title %}List of bundled plugins{% endblock %}
+{% block content %}
 <div class="sqversions">
   <ul>
     {% for sqv,plugins in map.items %}
