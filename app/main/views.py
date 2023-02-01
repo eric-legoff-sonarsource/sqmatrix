@@ -1,5 +1,8 @@
-from django.http import HttpResponse
+from django.shortcuts import render
+from .models import Sonarqube
 
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the main index.")
+    sqversions = Sonarqube.objects.all()
+    context = {'sqversions' : sqversions}
+    return render(request, 'index.html', context)
