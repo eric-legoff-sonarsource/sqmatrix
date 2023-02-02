@@ -11,7 +11,7 @@ def index(request):
     
     for v in sqversions:
         sq = Sonarqube.objects.get(full_version=v)
-        complist = list(Compatibility.objects.all().filter(sonarqube = sq))
+        complist = Compatibility.objects.all().filter(sonarqube = sq)
         compat_map[v] = complist
            
     context = {'map' : compat_map}

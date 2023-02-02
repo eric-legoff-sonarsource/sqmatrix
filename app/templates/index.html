@@ -23,18 +23,30 @@
       data-bs-parent="#releases"
     >
       <div class="accordion-body">
-        <ul class="list-group list-group-flush">
-          {% for p in plugins %}
+        <div class="row">
+        {% for c in plugins %}
 
-          <li class="list-group-item text-bg-dark p-3">{{ p }}</li>
-
+        
+          <div class="col-sm-4">
+            <div class="card p-3 mb-2 bg-secondary text-white">
+              <div class="card-body">
+                <h5 class="card-title">{{c.plugin.name}}</h5>
+                <p class="card-text">
+                  {{c.version}}
+                </p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+          </div>
+        
           {% endfor %}
-        </ul>
+        </div>
+        </div>
       </div>
     </div>
+
+    {% endfor %}
   </div>
 
-  {% endfor %}
+  {% endblock %}
 </div>
-
-{% endblock %}
