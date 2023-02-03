@@ -7,6 +7,8 @@ from ..models import LANGUAGES, get_gradle_config, jar_list
 
 """SonarQube versions """
 SQ_VERSIONS=[
+'9.9.0.65466',    
+    
 '9.8.0.63668',
 
 '9.7.1.62043',

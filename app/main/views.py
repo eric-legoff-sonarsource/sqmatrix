@@ -22,6 +22,11 @@ def releases(request):
     return render(request, 'releases.html', context)
 
 
+def semsort(item):
+    major, minor,patch,build = item[0].split('.')   
+    return (int(major), int(minor), int(patch), int(build))
+
+
 def plugins(request):
     comps = list(Compatibility.objects.all().order_by('plugin__name'))
     
@@ -38,8 +43,13 @@ def plugins(request):
                 plugin_map[c.plugin.name] = m
         else:
             plugin_map[c.plugin.name]={c.version : [c.sonarqube]}
+            
+    map = {}     
+    for k in plugin_map.keys():
+        od = collections.OrderedDict(sorted(plugin_map[k].items(), key = semsort, reverse=True)) 
+        map[k] = od       
                      
-    context = {'map' : plugin_map}
+    context = {'map' : map}
     return render(request, 'plugins.html', context)
 
 

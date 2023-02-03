@@ -59,15 +59,4 @@
   {% endfor%}
 </div>
 
-<ul>
-  {% for plugin,values in map.items %}
-  <li>{{plugin}}</li>
-
-  <ul>
-    {% for v in values %} {{ v }} {% endfor%}
-  </ul>
-
-  {% endfor%}
-</ul>
-
 {% endblock %}
