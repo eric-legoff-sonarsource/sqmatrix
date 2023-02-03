@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 from .forms import AddNewRelease
 
 
-def index(request):
+def releases(request):
     sqversions = Sonarqube.objects.all().order_by('-full_version')
     
     compat_map ={}
@@ -13,9 +13,32 @@ def index(request):
         sq = Sonarqube.objects.get(full_version=v)
         complist = Compatibility.objects.all().filter(sonarqube = sq)
         compat_map[v] = complist
+        
+        
            
     context = {'map' : compat_map}
-    return render(request, 'index.html', context)
+    return render(request, 'releases.html', context)
+
+
+def plugins(request):
+    comps = list(Compatibility.objects.all().order_by('plugin__name'))
+    
+    plugin_map ={}
+   
+    for c in comps:
+        if c.plugin.name in plugin_map:
+            m = plugin_map[c.plugin.name]
+            if c.version in m:
+                m[c.version].append(c.sonarqube)
+                plugin_map[c.plugin.name]=m             
+            else:
+                m[c.version]=[c.sonarqube]
+                plugin_map[c.plugin.name] = m
+        else:
+            plugin_map[c.plugin.name]={c.version : [c.sonarqube]}
+                     
+    context = {'map' : plugin_map}
+    return render(request, 'plugins.html', context)
 
 
 def add(request):

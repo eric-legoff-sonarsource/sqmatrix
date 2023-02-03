@@ -85,6 +85,7 @@ def get_gradle_config(sqversion):
         'X-GitHub-Api-Version': '2022-11-28'
             }
     )
+   
     data = r.json()
     file_content = data.get('content', '')
     file_content_encoding = data.get('encoding')
@@ -92,6 +93,19 @@ def get_gradle_config(sqversion):
         file_content = base64.b64decode(file_content).decode()
     
     return file_content
+
+def get_publih_date(sqversion):
+    r = requests.get(
+    'https://api.github.com/repos/{owner}/{repo}/releases/tags/{tag}'.format(
+    owner=owner, repo=repo, tag=sqversion),
+    headers={
+        'Accept': 'application/vnd.github+json',
+        'Authorization': 'Bearer {}'.format(token),
+        'X-GitHub-Api-Version': '2022-11-28'
+            }
+    )
+    data = r.json()
+    return data['published_at']
 
 def jar_list(filecontent):
     ''' Returns the list of Sonarsource jar files 
