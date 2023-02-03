@@ -2,6 +2,8 @@ from django.shortcuts import render
 from .models import Sonarqube, Plugin, Compatibility
 from django.http import HttpResponseRedirect
 from .forms import AddNewRelease
+import collections
+import distutils
 
 
 def releases(request):
@@ -15,8 +17,8 @@ def releases(request):
         compat_map[v] = complist
         
         
-           
-    context = {'map' : compat_map}
+    map = collections.OrderedDict(sorted(compat_map.items(), reverse=True))
+    context = {'map' : map}
     return render(request, 'releases.html', context)
 
 

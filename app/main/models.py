@@ -44,6 +44,37 @@ class Sonarqube(models.Model):
     
     def save(self, *args, **kwargs):
         super(Sonarqube, self).save(*args, **kwargs)
+        
+    def __lt__(self, other):
+        major, minor, patch, build = self.full_version.split('.')
+        other_major, other_minor, other_patch, other_build = other.full_version.split('.')
+    
+        if int(major) < int(other_major):
+            return True
+        elif int(major) > int(other_major):
+            return False
+        
+        if int(minor) < int(other_minor):
+            return True
+        elif int(minor) > int(other_minor):
+            return False
+        
+        if int(patch) < int(other_patch):
+            return True
+        elif int(patch) > int(other_patch):
+            return False
+        
+        if  int(build) < int(other_build):
+            return True
+        elif int(build) > int(other_build):
+            return False
+        
+        return False
+        
+        
+        
+        
+    
     
 class Plugin(models.Model):
     name = models.CharField(max_length=100)
