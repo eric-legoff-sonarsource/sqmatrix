@@ -86,6 +86,9 @@ class Plugin(models.Model):
             return self.name
         else:
             return self.language
+        
+    def __lt__(self, other):
+        self.name < other.name
     
 class Compatibility(models.Model):
     class Meta:
@@ -97,6 +100,47 @@ class Compatibility(models.Model):
     
     def __str__(self):
         return f'{self.plugin.name} v{self.version}'
+    
+    def __lt__(self, other):
+        if self.sonarqube < other.sonarqube:
+            return True
+        elif self.sonarqube > other.sonarqube:
+            return False
+        
+        if self.plugin.name < other.plugin.name:
+            return True
+        elif self.plugin.name > other.plugin.name:
+            return False
+        
+        major, minor, patch, build = self.version.split('.')
+        other_major, other_minor, other_patch, other_build = other.version.split('.')
+        
+        if int(major) < int(other_major):
+            return True
+        elif int(major) > int(other_major):
+            return False
+        
+        if int(minor) < int(other_minor):
+            return True
+        elif int(minor) > int(other_minor):
+            return False
+        
+        if int(patch) < int(other_patch):
+            return True
+        elif int(patch) > int(other_patch):
+            return False
+        
+        if  int(build) < int(other_build):
+            return True
+        elif int(build) > int(other_build):
+            return False
+        
+        return False
+        
+        
+
+        
+    
     
 def get_gradle_config(sqversion):
     '''Provides the raw text content of the build.gradle file 

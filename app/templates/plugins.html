@@ -44,7 +44,19 @@
             <div class="card p-3 mb-2 bg-secondary text-white">
               <div class="card-body">
                 <h5 class="card-title">{{k}}</h5>
-                <p class="card-text">{% for e in v %} {{ e }} {% endfor %}</p>
+                <p class="card-text">
+                  {% for sqv in v %}
+                  <div class="row">
+                    <div class="col-sm-">
+                  <a
+                    href="https://github.com/SonarSource/sonar-enterprise/releases/tag/{{sqv}}"
+                    class="btn btn-primary sm-4"
+                    >SonarQube v{{ sqv }}
+                  </a>
+                </div></div>
+
+                  {% endfor %}
+                </p>
               </div>
             </div>
           </div>

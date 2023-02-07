@@ -3,7 +3,6 @@ from .models import Sonarqube, Plugin, Compatibility
 from django.http import HttpResponseRedirect
 from .forms import AddNewRelease
 import collections
-import distutils
 
 
 def releases(request):
@@ -18,6 +17,10 @@ def releases(request):
         
         
     map = collections.OrderedDict(sorted(compat_map.items(), reverse=True))
+    
+    for v in map.keys():
+        map[v] = sorted(map[v])
+        
     context = {'map' : map}
     return render(request, 'releases.html', context)
 
@@ -63,10 +66,8 @@ def add(request):
             sq.save()
 
         return HttpResponseRedirect("/" )
-
     else:
         form = AddNewRelease()
-        
-        
+               
     context = {"form" : form}
     return render(request, 'add.html', context)
