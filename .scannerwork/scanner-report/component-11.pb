@@ -1,0 +1,1 @@
+ 2webXKhrapp/templates/plugins.html

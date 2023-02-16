@@ -1,0 +1,3 @@
+main.migrations.0001_initial.remove_sonarqube_versions
+==
+delete
