@@ -56,7 +56,7 @@ def plugins(request):
     context = {'map' : p_map}
     return render(request, 'plugins.html', context)
 
-@require_http_methods(["POST"])
+@require_http_methods(["GET", "POST"])
 def add(request):
     if request.method == "POST":
         form = AddNewRelease(request.POST)
