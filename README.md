@@ -4,21 +4,23 @@
 
 - SonarSourcer GitHub account
   (needing permission to read https://github.com/SonarSource/sonar-enterprise)
-- define an environment variable `SQMATRIX_TOKEN` for the GitHub account
+- Create a personal access token , see https://docs.github.com/en/enterprise-cloud@latest/authentication/authenticating-with-saml-single-sign-on/authorizing-a-personal-access-token-for-use-with-saml-single-sign-on
+
+- define a local environment variable `SQMATRIX_TOKEN` for that token
 
 ## Create the docker container
-
-- Optionally force deletion of existing container before re-creating :
-
-```
-docker rmi --force sqmatrix-web
-```
 
 - Building the image
 
 ```
 cd app
 docker build -t elegoff/sqmatrix .
+```
+
+- Optionally recreate after force deletion of existing container :
+
+```
+docker rmi --force sqmatrix-web
 ```
 
 ## Running the application
@@ -31,11 +33,14 @@ and then browse here: `http://localhost:8000`
 
 ## Stopping the application
 
+either CTRL+C
+or
+
 ```
 docker compose down
 ```
 
-## Accessing the container
+## Accessing the container shell
 
 ```
 docker exec -it sqmatrix-web-1 /bin/sh
@@ -45,7 +50,7 @@ docker exec -it sqmatrix-web-1 /bin/sh
 
 Database operations are accessible via http://localhost:8000/admin
 
-Default Adnistrator credentials :
+Default Administrator credentials :
 
 - User = admin
 - Password = admin
