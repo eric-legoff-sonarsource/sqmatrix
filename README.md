@@ -4,12 +4,15 @@
 
 - SonarSourcer GitHub account
   (needing permission to read https://github.com/SonarSource/sonar-enterprise)
+- define an environment variable `SQMATRIX_TOKEN` for the GitHub account
 
 ## Create the docker container
 
 - Optionally force deletion of existing container before re-creating :
 
-`docker rmi --force sqmatrix-web`
+```
+docker rmi --force sqmatrix-web
+```
 
 - Building the image
 
@@ -37,3 +40,12 @@ docker compose down
 ```
 docker exec -it sqmatrix-web-1 /bin/sh
 ```
+
+## Using the Administrator account
+
+Database operations are accessible via http://localhost:8000/admin
+
+Default Adnistrator credentials :
+
+- User = admin
+- Password = admin
