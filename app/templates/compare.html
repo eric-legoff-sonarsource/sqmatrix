@@ -1,15 +1,18 @@
-{% extends 'base.html' %} {% block content %} {% block title %} Jira tickets
-between two SonarQube releases{% endblock %}
+{% extends 'base.html' %} {% block title %} Jira tickets between two SonarQube
+releases{% endblock %} {% block content %}
 
 <form method="post" action="/compare/" class="form-group">
   {% csrf_token %}
   <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <button type="submit" name="save" class="btn btn-primary">
-        Compare release
-      </button>
-    </div>
-    {{form.v1}} {{form.v2}}
+    <div class="input-group-prepend"></div>
+    From
+    <div>{{form.v1}}</div>
+    to
+    <div>{{form.v2}}</div>
+
+    <button type="submit" name="save" class="btn btn-primary">
+      Find Jira tickets
+    </button>
   </div>
 </form>
 
