@@ -1,0 +1,31 @@
+{% extends 'base.html' %} {% block content %} {% block title %} Jira tickets
+between two SonarQube releases{% endblock %}
+
+<form method="post" action="/compare/" class="form-group">
+  {% csrf_token %}
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <button type="submit" name="save" class="btn btn-primary">
+        Compare release
+      </button>
+    </div>
+    {{form.v1}} {{form.v2}}
+  </div>
+</form>
+
+{%if form.result != None %}
+<ul class="list-group list-group-flush">
+  {% for msg in form.result %}
+  <li class="list-group-item">
+    <a
+      href="https://sonarsource.atlassian.net/browse/{{ msg.0 }}"
+      class="btn btn-secondary"
+    >
+      {{ msg.0 }}
+    </a>
+    {{ msg.1 }}
+  </li>
+  {% endfor %}
+</ul>
+
+{% endif%} {% endblock %}
