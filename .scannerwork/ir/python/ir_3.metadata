@@ -1,5 +1,0 @@
-main.apps.MainConfig.ready
-super
-super.__init__
-==
-ready

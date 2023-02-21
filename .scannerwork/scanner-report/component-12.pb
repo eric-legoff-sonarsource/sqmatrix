@@ -1,1 +1,0 @@
- 2webXIhrapp/templates/base.html
